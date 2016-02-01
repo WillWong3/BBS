@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+
+	<package name="login" extends="struts-default" namespace="/action">
+		<action name="Login_*" class="xiezuo.struts2.action.LoginAction"
+			method="{1}">
+			<result name="input" type="redirect">/login.jsp</result>
+			<result name="admin" type="redirect">/admin.jsp</result>
+			<result name="adminLogin" type="redirect">/adminLogin.jsp</result>
+			<result name="pm" type="redirect">/pm.jsp</result>
+			<result name="sm" type="redirect">/sm.jsp</result>
+			<result name="dm" type="redirect">/dm.jsp</result>
+			<result name="developer" type="redirect">/developer.jsp</result>
+			<result name="login" type="redirect">/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="xiezuo" extends="struts-default" namespace="/project">
+		<interceptors>
+			<interceptor name="authority"
+				class="xiezuo.struts2.action.AuthorityInterceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority">
+					<param name="includeMethods">intercept</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 默认拦截器开始 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/success.jsp</result>
+		</global-results>
+		<action name="Admin_*" class="xiezuo.struts2.action.AdminAction"
+			method="{1}">
+			<result name="input" type="redirect">/updateAdminPass.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">listPm</param>
+				<param name="projectManage.pmName">${null}</param>
+			</result>
+			<result name="pmShow">/pmShow.jsp</result>
+			<result name="return" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">exitAction</param>
+			</result>
+		</action>
+		<action name="Pm_*" class="xiezuo.struts2.action.PmAction"
+			method="{1}">
+			<result name="input" type="redirect">/updatePmPass.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">listManager</param>
+				<param name="manager.managerName">${null}</param>
+				<param name="manager.managerType">${null}</param>
+				<param name="id">${#session.user.pmId}</param>
+			</result>
+			<result name="managerShow">/managerShow.jsp</result>
+			<result name="return" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">exitAction</param>
+			</result>
+		</action>
+		<action name="Manager_*" class="xiezuo.struts2.action.ManagerAction"
+			method="{1}">
+			<result name="input" type="redirect">/updateManagerPass.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">listDeveloper</param>
+				<param name="developer.developerName">${null}</param>
+				<param name="developer.developeType">${null}</param>
+				<param name="developer.dmId">${#session.user.managerId}</param>
+				<param name="developer.leader">${null}</param>
+				<param name="developer.groupId">${null}</param>
+			</result>
+			<result name="grouplist" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">listGroup</param>
+				<param name="group.groupName">${null}</param>
+				<param name="group.leader">${null}</param>
+				<param name="group.dmId">${#session.user.managerId}</param>
+				<param name="group.groupType">${null}</param>
+			</result>
+			<result name="groupShow">/groupShow.jsp</result>
+			<result name="developerShow">/developerShow.jsp</result>
+			<result name="return" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">exitAction</param>
+			</result>
+		</action>
+		<action name="Project_*" class="xiezuo.struts2.action.ProjectAction"
+			method="{1}">
+			<result name="input" type="redirect">/index.jsp</result>
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">listProject</param>
+				<param name="project.projectName">${null}</param>
+				<param name="project.pass">${null}</param>
+				<param name="project.pmId">${#session.user.pmId}</param>
+				<param name="project.smId">${#session.user.managerId}</param>
+				<param name="project.dmId">${null}</param>
+				<param name="project.dgroupId">${null}</param>
+				<param name="project.tgroupId">${null}</param>
+				<param name="project.rgroupId">${null}</param>
+				<param name="project.dmCheck">${null}</param>
+				<param name="project.pmCheck">${null}</param>
+				<param name="project.acceptance">${null}</param>
+			</result>
+			<result name="projectShow">/projectShow.jsp</result>
+			<result name="docShow">/docShow.jsp</result>
+			<result name="planShow">/planShow.jsp</result>
+			<result name="testShow">/testShow.jsp</result>
+			<result name="reason">/projectReason.jsp</result>
+			<result name="failure">/projectFailure.jsp</result>
+		</action>
+		<action name="findPm" class="xiezuo.struts2.action.AdminAction"
+			method="FindPm">
+			<result name="pmShow">/updatePmShow.jsp</result>
+		</action>
+		<action name="findManager" class="xiezuo.struts2.action.PmAction"
+			method="FindManager">
+			<result name="managerShow">/updateManagerShow.jsp</result>
+		</action>
+		<action name="findDeveloper" class="xiezuo.struts2.action.ManagerAction"
+			method="FindDeveloper">
+			<result name="developerShow">/updateDeveloperShow.jsp</result>
+		</action>
+		<action name="findProjectManager" class="xiezuo.struts2.action.ProjectAction"
+			method="FindProject">
+			<result name="projectShow">/mprojectShow.jsp</result>
+		</action>
+		<action name="findAddPlan" class="xiezuo.struts2.action.ProjectAction"
+			method="FindPlan">
+			<result name="planShow">/addPlan.jsp</result>
+		</action>
+		<action name="findAddTest" class="xiezuo.struts2.action.ProjectAction"
+			method="FindPlan">
+			<result name="planShow">/addTest.jsp</result>
+		</action>
+		<action name="updatePm" class="xiezuo.struts2.action.AdminAction"
+			method="UpdatePm">
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">exitAction</param>
+			</result>
+		</action>
+		<action name="updateManager" class="xiezuo.struts2.action.PmAction"
+			method="UpdateManager">
+			<result name="list" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">exitAction</param>
+			</result>
+		</action>
+		<action name="listPm" class="xiezuo.struts2.action.AdminAction"
+			method="ListPm">
+			<result name="listPm">/pmList.jsp</result>
+		</action>
+		<action name="listManager" class="xiezuo.struts2.action.PmAction"
+			method="ListManager">
+			<result name="list">/managerList.jsp</result>
+		</action>
+		<action name="listGroup" class="xiezuo.struts2.action.ManagerAction"
+			method="ListGroup">
+			<result name="grouplist">/groupList.jsp</result>
+		</action>
+		<action name="listDeveloper" class="xiezuo.struts2.action.ManagerAction"
+			method="ListDeveloper">
+			<result name="list">/developerList.jsp</result>
+		</action>
+		<action name="selectDeveloper" class="xiezuo.struts2.action.ManagerAction"
+			method="ListDeveloper">
+			<result name="list">/selectLeader.jsp</result>
+		</action>
+		<action name="selectGroup" class="xiezuo.struts2.action.ManagerAction"
+			method="ListGroup">
+			<result name="grouplist">/selectGroup.jsp</result>
+		</action>
+		<action name="selecttGroup" class="xiezuo.struts2.action.ManagerAction"
+			method="ListGroup">
+			<result name="grouplist">/selectTgroup.jsp</result>
+		</action>
+		<action name="selectrGroup" class="xiezuo.struts2.action.ManagerAction"
+			method="ListGroup">
+			<result name="grouplist">/selectRgroup.jsp</result>
+		</action>
+		<action name="selectManager" class="xiezuo.struts2.action.PmAction"
+			method="ListManager">
+			<result name="list">/selectDm.jsp</result>
+		</action>
+		<action name="listProject" class="xiezuo.struts2.action.ProjectAction"
+			method="ListProject">
+			<result name="list">/projectList.jsp</result>
+		</action>
+		<action name="exitAction" class="xiezuo.struts2.action.ExitAction">
+		</action>
+		<action name="uploadSm" class="xiezuo.struts2.action.DocAction"
+			method="AddDoc">
+			<param name="savePath">/upload</param>
+			<result name="input">/upload.jsp</result>
+			<result name="docShow">/docShow.jsp</result>
+		</action>
+		<action name="delDoc" class="xiezuo.struts2.action.DocAction"
+			method="delFile">
+			<param name="savePath">/upload</param>
+			<result name="input">/upload.jsp</result>
+			<result name="docShow">/docShow.jsp</result>
+		</action>
+		<action name="download" class="xiezuo.struts2.action.DocAction">
+			<result name="success" type="stream">
+				<param name="inputName">downLoadFile</param>
+				<param name="contentDisposition">attachment;filename="${downLoadChineseFileName}"</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	</package>
+</struts>
