@@ -9,6 +9,6 @@
             <generator class="native" />
         </id>
         <property name="adminName" type="java.lang.String" length="10" not-null="true"/>
-        <property name="adminPassword" type="java.lang.String" length="16" not-null="true"/>
+        <property name="adminPassword" type="java.lang.String" length="8" not-null="true"/>
     </class>
 </hibernate-mapping>
