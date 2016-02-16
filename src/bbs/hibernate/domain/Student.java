@@ -6,7 +6,7 @@ public class Student {
 	private String SID;
 	private String SName;
 	private String SPassword;
-	private Date Sbirthday;
+//	private Date Sbirthday;
 	public String getSID() {
 		return SID;
 	}
@@ -25,12 +25,12 @@ public class Student {
 	public void setSPassword(String sPassword) {
 		SPassword = sPassword;
 	}
-	public Date getSbirthday() {
-		return Sbirthday;
-	}
-	public void setSbirthday(Date sbirthday) {
-		Sbirthday = sbirthday;
-	}
+//	public Date getSbirthday() {
+//		return Sbirthday;
+//	}
+//	public void setSbirthday(Date sbirthday) {
+//		Sbirthday = sbirthday;
+//	}
 	
 	
 

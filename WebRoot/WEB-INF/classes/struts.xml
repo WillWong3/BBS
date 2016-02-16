@@ -19,10 +19,10 @@
 		</action>
 	</package>
 
-	<package name="xiezuo" extends="struts-default" namespace="/project">
+	<package name="bbs" extends="struts-default" namespace="/project">
 		<interceptors>
 			<interceptor name="authority"
-				class="xiezuo.struts2.action.AuthorityInterceptor" />
+				class="bbs.struts2.action.AuthorityInterceptor" />
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="authority">
@@ -33,7 +33,7 @@
 		<!-- 默认拦截器开始 -->
 		<default-interceptor-ref name="myStack"></default-interceptor-ref>
 		<global-results>
-			<result name="login" type="redirect">/success.jsp</result>
+			<result name="login" type="redirect">/login.jsp</result>
 		</global-results>
 		<!-- 配置action -->
 		

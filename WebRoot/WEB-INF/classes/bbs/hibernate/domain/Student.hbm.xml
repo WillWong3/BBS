@@ -4,11 +4,11 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="bbs.hibernate.domain">
-    <class name="Admin" table="admin">
-        <id name="adminId">
+    <class name="Student" table="student">
+        <id name="SId">
             <generator class="native" />
         </id>
-        <property name="adminName" type="java.lang.String" length="10" not-null="true"/>
-        <property name="adminPassword" type="java.lang.String" length="8" not-null="true"/>
+        <property name="SName" type="java.lang.String" length="10" not-null="true"/>
+        <property name="SPassword" type="java.lang.String" length="8" not-null="true"/>
     </class>
 </hibernate-mapping>
