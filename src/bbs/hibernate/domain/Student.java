@@ -3,34 +3,29 @@ package bbs.hibernate.domain;
 import java.util.Date;
 
 public class Student {
-	private String SID;
-	private String SName;
-	private String SPassword;
+	private String sID;
+	private String sName;
+	private String sPassword;
 //	private Date Sbirthday;
-	public String getSID() {
-		return SID;
+	public String getsID() {
+		return sID;
 	}
-	public void setSID(String sID) {
-		SID = sID;
+	public void setsID(String sID) {
+		this.sID = sID;
 	}
-	public String getSName() {
-		return SName;
+	public String getsName() {
+		return sName;
 	}
-	public void setSName(String sName) {
-		SName = sName;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
-	public String getSPassword() {
-		return SPassword;
+	public String getsPassword() {
+		return sPassword;
 	}
-	public void setSPassword(String sPassword) {
-		SPassword = sPassword;
+	public void setsPassword(String sPassword) {
+		this.sPassword = sPassword;
 	}
-//	public Date getSbirthday() {
-//		return Sbirthday;
-//	}
-//	public void setSbirthday(Date sbirthday) {
-//		Sbirthday = sbirthday;
-//	}
+	
 	
 	
 

@@ -25,21 +25,20 @@
 <body>
 	<s:div class="login-03">
 		<s:div class="third-login">
-			<h1><img src="images/twit.png" alt=""/>Log In with Twitter</h1>
-			<form class="three">
-					<p>Username / Email</p>
-					<li class="base">
-					<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"><a href="#" class=" icons3 user3"></a>
-				</li>
-					<p>Password</p>
-					<li>
-							<input type="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"><a href="#" class=" icons3 lock3"></a>
+			<h1><img src="images/twit.png" alt=""/>登陆界面</h1>
+			<s:form action="Login_UserLogin" namespace="/action" theme="simple">
+				<ul>
+				
+					<li><s:textfield name="id" cssClass="loginuser" value="Id"
+							onclick="JavaScript:this.value=''" />
 					</li>
-
-					<s:div class="submit-three">
-						<input type="submit" onclick="myFunction()" value="Log In" > 
-					</s:div>
-			</form>
+					<li><s:password name="password" cssClass="loginpwd" />
+					</li>
+					<li><s:submit value="登录" cssClass="loginbtn" />&nbsp&nbsp&nbsp<a
+						href="adminLogin.jsp">后台登录</a>
+					</li>
+				</ul>
+			</s:form>
 		</s:div>
 	</s:div>
 	

@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="bbs.hibernate.domain">
     <class name="Admin" table="admin">
-        <id name="adminId">
+        <id name="adminId" type="java.lang.Integer">
             <generator class="native" />
         </id>
         <property name="adminName" type="java.lang.String" length="10" not-null="true"/>

@@ -50,15 +50,18 @@ public class LoginAction {
 		this.password = password;
 	}
 	//π‹¿Ì‘±µ«¬ºmethod
-	public String AdminLogin(){
+	public String UserLogin(){
+		System.out.println("12222");//
 		ActionContext ctx=ActionContext.getContext();
 		Map session=ctx.getSession();
 		admin=adminService.findAdminById(id);
-		if ((admin!=null)&&(password.equals(admin.getAdminPassword()))) {
+		if ((admin!=null)&&(password.equals(admin.getAdminPassword()))) 
+		{
 			session.put("user",admin);
-			return "admin";
+			System.out.println("111"+admin.getAdminName());//
+			return "login";
 		}
-		return "adminLogin";
+		return "admin";
 	}
 	
 }

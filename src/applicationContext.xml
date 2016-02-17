@@ -36,7 +36,8 @@
 	<bean id="adminDao" class="bbs.hibernate.dao.impl.AdminDaoImpl">
 	<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<!--  
-	<bean id="adminService" class="xiezuo.spring.service.impl.AdminServiceImpl"/>
-	-->
+	  
+	<bean id="adminService" class="bbs.spring.service.impl.AdminServiceImpl"/>
+	<bean id="LoginAction" class="bbs.struts2.action.LoginAction" scope="prototype"/>
+	<bean id="AdminAction" class="bbs.struts2.action.AdminAction" scope="prototype"/>
 	</beans>
